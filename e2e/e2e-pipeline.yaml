@@ -21,7 +21,7 @@ spec:
           - name: TEST_OUTPUT
             description: Test output
         steps:
-          - image: registry.redhat.io/openshift4/ose-cli:latest
+          - image: quay.io/openshift-pipeline/ci:latest
             env:
               - name: SNAPSHOT
                 value: $(params.SNAPSHOT)
@@ -29,10 +29,12 @@ spec:
               #!/usr/bin/env bash
               set -ex -u -o pipefail
               
-              dnf -y install unzip git jq
+              dnf -y install jq
               
-              curl -SsL https://downloads.gauge.org/stable | sh
               git clone https://github.com/openshift-pipelines/release-tests.git
+              
+              
+              oc login -u kubeadmin -p X86gq-znp9u-9IUT9-WdyVf https://api.aws-416-n9w6p.aws.ospqa.com:6443 --insecure-skip-tls-verify=true
               
               gauge run --tags="" --log-level=debug --verbose release-tests/specs/pipelines
               
