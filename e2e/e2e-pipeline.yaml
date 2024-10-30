@@ -32,7 +32,7 @@ spec:
               dnf -y install unzip git jq
               
               curl -SsL https://downloads.gauge.org/stable | sh
-              https://github.com/openshift-pipelines/release-tests.git
+              git clone https://github.com/openshift-pipelines/release-tests.git
               
               gauge run --tags="" --log-level=debug --verbose release-tests/specs/pipelines
               
