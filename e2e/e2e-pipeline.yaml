@@ -29,7 +29,6 @@ spec:
               #!/usr/bin/env bash
               set -ex -u -o pipefail
               
-              dnf -y install jq
               
               git clone https://github.com/openshift-pipelines/release-tests.git
               
@@ -38,6 +37,7 @@ spec:
               
               gauge run --tags="" --log-level=debug --verbose release-tests/specs/pipelines
               
+              dnf -y install jq
               echo -e "Example test task for the Snapshot:\n ${SNAPSHOT}"
               # Run custom tests for the given Snapshot here
               # After the tests finish, record the overall result in the RESULT variable
