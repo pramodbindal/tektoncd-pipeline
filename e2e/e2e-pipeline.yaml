@@ -9,7 +9,7 @@ spec:
       default: '{"components": [{"name":"test-app", "containerImage": "quay.io/example/repo:latest"}]}'
       type: string
   tasks:
-    - name: hello-task
+    - name: e2e-task
       description: Placeholder task that prints the Snapshot and outputs standard TEST_OUTPUT
       params:
         - name: SNAPSHOT
@@ -21,7 +21,8 @@ spec:
           - name: TEST_OUTPUT
             description: Test output
         steps:
-          - image: quay.io/openshift-pipeline/ci:latest
+          - name: e2e
+            image: quay.io/openshift-pipeline/ci:latest
             env:
               - name: SNAPSHOT
                 value: $(params.SNAPSHOT)
